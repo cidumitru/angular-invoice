@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {ProductsModule} from './modules/products/products.module';
 import {InvoicesModule} from './modules/invoices/invoices.module';
 import {AppRoutingModule} from './app-routing.module';
 import {NgxsModule} from '@ngxs/store';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
-import {InvoicesService} from './core/services/invoices.service';
+import {ClientsModule} from './modules/clients/clients.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import {InvoicesService} from './core/services/invoices.service';
     BrowserModule,
     ProductsModule,
     InvoicesModule,
+    ClientsModule,
     AppRoutingModule,
     NgxsModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),

@@ -1,8 +1,8 @@
 import {Action, State, StateContext} from '@ngxs/store';
-import {IInvoicesState, InvoicesStateModel} from './models/invoices.state.model';
+import {IInvoicesStateModel, InvoicesStateModel} from './models/invoices.state.model';
 import {CreateInvoiceAction, DeleteInvoiceAction, LoadInvoicesAction} from './actions/invoices.actions';
 
-@State<IInvoicesState>({
+@State<IInvoicesStateModel>({
   name: 'invoices',
   defaults: InvoicesState.default
 })

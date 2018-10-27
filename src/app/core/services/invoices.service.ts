@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {IInvoiceDto} from './interfaces/invoice-dto.interface';
-import {getMockInvoices} from './mock.data';
+import {getMockInvoices} from './mock/mock.data';
 import {Store} from '@ngxs/store';
 import {tap} from 'rxjs/operators';
 import {LoadInvoicesAction} from '../store/actions/invoices.actions';

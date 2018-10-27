@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InvoicesService} from '../../core/services/invoices.service';
 import {Select, Store} from '@ngxs/store';
 import {InvoicesStateModel} from '../../core/store/models/invoices.state.model';

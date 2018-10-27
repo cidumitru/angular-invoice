@@ -2,18 +2,12 @@
   <div class="row mt-4">
     <div class="col-md-3">
       <div class="list-group">
-        <a href="#" *ngFor="let invoice of (state$ | async).items" (click)="selectedInvoice = invoice" class="list-group-item list-group-item-action">Factura {{ invoice.id }}</a>
+        <a *ngFor="let invoice of (state$ | async).items" (click)="selectedInvoice = invoice"
+           class="list-group-item list-group-item-action">Invoice {{ invoice.id }}</a>
       </div>
     </div>
     <div class="col-md-9">
-      <button class="btn btn-danger" (click)="deleteInvoice(selectedInvoice.id)">delete</button>
-      {{selectedInvoice | json}}
+      <app-invoice-item *ngIf="selectedInvoice" [invoice]="selectedInvoice"></app-invoice-item>
     </div>
   </div>
 </div>
-
-<!--<ul>-->
-  <!--<li *ngFor="let invoice of (state$ | async).items">-->
-    <!--{{ invoice | json }}-->
-  <!--</li>-->
-<!--</ul>-->
