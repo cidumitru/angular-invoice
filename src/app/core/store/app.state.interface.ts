@@ -1,7 +1,7 @@
-import {InvoicesState} from './invoices.state';
-import {ProductsState} from './products.state';
+import {IInvoicesStateModel} from './models/invoices.state.model';
+import {IProductsStateModel} from './models/products.state.model';
 
 export interface IAppState {
-  invoices: InvoicesState;
-  products: ProductsState;
+  invoices: IInvoicesStateModel;
+  products: IProductsStateModel;
 }
