@@ -35,7 +35,7 @@ export class InvoiceItemComponent implements OnInit {
         const productsView: IProductViewModel[] = productIds.map((id) => {
           return new ProductViewModel(
             {...products[id], ...invoiceProducts[id]});
-        });
+        }).filter((val) => val.id);
         return of(productsView);
       })
     );
