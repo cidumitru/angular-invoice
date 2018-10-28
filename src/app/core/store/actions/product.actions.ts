@@ -1,4 +1,5 @@
 import {IProductDto} from '../../services/interfaces/product-dto.interface';
+import {IProduct} from '../../shared/interfaces/product.interface';
 
 export class LoadProductsAction {
   static readonly type = '[Products] Load';
@@ -9,17 +10,23 @@ export class LoadProductsAction {
 
 export class AddProductAction {
   static readonly type = '[Product] Add';
-  constructor(product: IProductDto) {}
+
+  constructor(public product: IProductDto) {
+  }
 }
 
 export class BulkAddProductAction {
   static readonly type = '[Product] Bulk Add';
-  constructor(products: IProductDto[]) {}
+
+  constructor(public products: IProductDto[]) {
+  }
 }
 
 export class UpdateProductAction {
   static readonly type = '[Product] Update';
-  constructor(public id: number, changes: Partial<IProductDto>) {}
+
+  constructor(public id: number, public changes: Partial<IProduct>) {
+  }
 }
 
 export class DeleteProductAction {

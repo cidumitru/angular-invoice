@@ -2,8 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IInvoice} from '../../../core/shared/interfaces/invoice.interface';
 import {IProduct} from '../../../core/shared/interfaces/product.interface';
 import {Store} from '@ngxs/store';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {IAppState} from '../../../core/store/app.state.interface';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-invoice-item',
@@ -12,7 +13,7 @@ import {IAppState} from '../../../core/store/app.state.interface';
 })
 export class InvoiceItemComponent implements OnInit {
 
-  products: Observable<IProduct[]>;
+  products$: Observable<IProduct[]>;
   invoice: IInvoice;
 
   constructor(private store: Store) {
@@ -27,11 +28,9 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   getProductsForInvoiceById(productIds: number[]): void {
-    this.products = this.store.select((state: IAppState) => {
-      const selected = [];
-      productIds.forEach((id) => selected.push(state.products.items[id]));
-      return selected;
-    });
+    this.products$ = this.store.select((state: IAppState) => state.products.items).pipe(
+      switchMap((products) => of(productIds.map((id) => products[id]).filter(val => val)))
+    );
   }
 
   getInvoiceTotal(products: IProduct[]): number {

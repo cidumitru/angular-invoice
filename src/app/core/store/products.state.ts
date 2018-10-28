@@ -1,6 +1,6 @@
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {IProductsStateModel, ProductsStateModel} from './models/products.state.model';
-import {LoadProductsAction} from './actions/product.actions';
+import {DeleteProductAction, LoadProductsAction, UpdateProductAction} from './actions/product.actions';
 
 @State<IProductsStateModel>({
   name: 'products',
@@ -23,4 +23,23 @@ export class ProductsState {
       }, {})
     });
   }
+
+  @Action(DeleteProductAction)
+  deleteProduct({getState, patchState}: StateContext<ProductsStateModel>, {id}: DeleteProductAction) {
+    const state: ProductsStateModel = getState();
+    delete state.items[id];
+    patchState({
+      items: {...state.items}
+    });
+  }
+
+  @Action(UpdateProductAction)
+  updateProduct({getState, patchState}: StateContext<ProductsStateModel>, {id, changes}: UpdateProductAction) {
+    const state: ProductsStateModel = getState();
+    patchState({
+      items: {...state.items, [id]: {...state.items[id], ...changes}}
+    });
+  }
+
+
 }

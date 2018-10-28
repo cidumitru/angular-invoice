@@ -6,8 +6,7 @@
       <th>Item</th>
 
       <th class="right">Unit Cost</th>
-      <th class="center">Qty</th>
-      <th class="right">Total</th>
+      <th class="right">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -15,9 +14,13 @@
       <td class="center">{{product.code}}</td>
       <td class="left">{{product.name}}</td>
 
-      <td class="right">{{product.price}}</td>
-      <td class="center">1</td>
-      <td class="right">{{product.price}}</td>
+      <td class="right">
+        <input class="form-control" type="number" [ngModel]="product.price"
+               (change)="updateProduct(product.id, {price: $event.target.valueAsNumber})">
+      </td>
+      <td class="right">
+        <button class="btn btn-danger" (click)="removeProduct(product.id)">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>
