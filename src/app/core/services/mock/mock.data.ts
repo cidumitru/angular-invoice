@@ -1,5 +1,5 @@
-import {ProductModel} from '../models/product.model';
-import {InvoiceModel} from '../models/invoice.model';
+import {ProductModel} from '../../shared/models/product.model';
+import {InvoiceModel} from '../../shared/models/invoice.model';
 import {IProductDto} from '../interfaces/product-dto.interface';
 import {IInvoiceDto} from '../interfaces/invoice-dto.interface';
 

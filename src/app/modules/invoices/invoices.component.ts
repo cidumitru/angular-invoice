@@ -3,9 +3,9 @@ import {InvoicesService} from '../../core/services/invoices.service';
 import {Select, Store} from '@ngxs/store';
 import {InvoicesStateModel} from '../../core/store/models/invoices.state.model';
 import {InvoicesState} from '../../core/store/invoices.state';
-import {IInvoiceDto} from '../../core/services/interfaces/invoice-dto.interface';
 import {Observable} from 'rxjs';
 import {DeleteInvoiceAction} from '../../core/store/actions/invoices.actions';
+import {IInvoice} from '../../core/shared/interfaces/invoice.interface';
 
 @Component({
   selector: 'app-invoices',
@@ -14,7 +14,7 @@ import {DeleteInvoiceAction} from '../../core/store/actions/invoices.actions';
 })
 export class InvoicesComponent implements OnInit {
 
-  selectedInvoice: IInvoiceDto;
+  selectedInvoice: IInvoice;
   @Select(InvoicesState) state$: Observable<InvoicesStateModel>;
   constructor(private api: InvoicesService, private store: Store) { }
 

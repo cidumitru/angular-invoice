@@ -18,7 +18,7 @@ export class InvoicesState {
 
   @Action(CreateInvoiceAction)
   createInvoice({getState, patchState}: StateContext<InvoicesStateModel>, {invoice}: CreateInvoiceAction) {
-    const state = getState();
+    const state: InvoicesStateModel = getState();
     patchState({
       items: [...state.items, {...invoice}]
     });
@@ -26,8 +26,8 @@ export class InvoicesState {
 
   @Action(DeleteInvoiceAction)
   deleteInvoice({getState, patchState}: StateContext<InvoicesStateModel>, {id}: DeleteInvoiceAction) {
-    const state = getState();
-    const items = [...state.items].filter((invoice) => invoice.id !== id);
+    const state: InvoicesStateModel = getState();
+    const items = state.items.filter((invoice) => invoice.id !== id);
     patchState({
       items: [...items]
     });

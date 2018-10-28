@@ -2,11 +2,11 @@ import {IProductDto} from './product-dto.interface';
 
 export interface IInvoiceDto {
   id: number;
-  info: IInvoiceInfo;
+  info: IInvoiceInfoDto;
   products: IProductDto[];
 }
 
-export interface IInvoiceInfo {
+export interface IInvoiceInfoDto {
   number: number;
   series: string;
   client: string;

@@ -1,11 +1,11 @@
-import {IInvoiceDto} from '../../services/interfaces/invoice-dto.interface';
+import {IInvoice} from '../../shared/interfaces/invoice.interface';
 
 export interface IInvoicesStateModel {
-  items: IInvoiceDto[];
+  items: IInvoice[];
 }
 
 export class InvoicesStateModel {
-  public items: IInvoiceDto[];
+  public items: IInvoice[];
 
   constructor(state: Partial<IInvoicesStateModel> = {}) {
     this.items = state.items || [];

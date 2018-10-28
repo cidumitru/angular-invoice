@@ -1,11 +1,11 @@
-import {IProductDto} from '../../services/interfaces/product-dto.interface';
+import {IProduct} from '../../shared/interfaces/product.interface';
 
 export interface IProductsStateModel {
-  items: IProductDto[];
+  items: IProduct[];
 }
 
 export class ProductsStateModel {
-  items: IProductDto[];
+  items: IProduct[];
   constructor(state: Partial<IProductsStateModel> = {}) {
     this.items = state.items || [];
   }
