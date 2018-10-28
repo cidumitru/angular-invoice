@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-md-9">
-      <app-invoice-item *ngIf="selectedInvoice" [invoice]="selectedInvoice"></app-invoice-item>
+      <app-invoice-item [invoice]="selectedInvoice || (state$ | async).items[0]"></app-invoice-item>
     </div>
   </div>
 </div>

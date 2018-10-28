@@ -13,7 +13,7 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
         info: {
           number: Math.floor(Math.random() * 100000 + 1),
           series: Math.random().toString(36).substr(2, 2).toLocaleUpperCase(),
-          client: 'Name Surname'
+          client: `Client ${Math.floor(Math.random() * 100 + 1)}`
         },
         products: getProducts()
       }

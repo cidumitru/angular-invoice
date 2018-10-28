@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container-fluid">
   <table class="table table-striped">
     <thead>
     <tr>
+      <th class="center">N</th>
       <th class="center">SKU</th>
       <th>Item</th>
 
@@ -10,7 +11,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products$ | async">
+    <tr *ngFor="let product of products$ | async; let i = index">
+      <td class="center">{{i}}</td>
       <td class="center">{{product.code}}</td>
       <td class="left">{{product.name}}</td>
 
