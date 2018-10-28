@@ -23,7 +23,9 @@ export class InvoicesComponent implements OnInit {
   }
 
   deleteInvoice(invoiceId: number): void {
-    this.store.dispatch(new DeleteInvoiceAction(invoiceId));
+    if (confirm('Delete?')) {
+      this.store.dispatch(new DeleteInvoiceAction(invoiceId));
+    }
   }
 
 }

@@ -9,7 +9,7 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
   for (let i = 0; i < n; i++) {
     invoices.push(new InvoiceMockModel(
       {
-        id: Math.floor(Math.random() * 1000000 + 1),
+        id: Math.floor(Math.random() * 10000 + 1000),
         info: {
           number: Math.floor(Math.random() * 100000 + 1),
           series: Math.random().toString(36).substr(2, 2).toLocaleUpperCase(),
@@ -24,12 +24,14 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
 
 function getProducts(): IProductDto[] {
   const products: IProductDto[] = [];
+  const SKU = 'SK';
   for (let i = 0; i < 5; i++) {
+    const productId = Math.floor(Math.random() * 10000 + 1);
     products.push(new ProductMockModel(
       {
-        id: Math.floor(Math.random() * 100000 + 1),
+        id: productId,
         name: `Product ${Math.random().toString(36).substr(2, 5)}`,
-        code: Math.random().toString(36).substr(2, 5),
+        code: `${SKU} ${productId}`,
         price: Math.floor(Math.random() * 400 + 1) + 100,
         quantity: Math.floor(Math.random() * 5 + 1)
       }

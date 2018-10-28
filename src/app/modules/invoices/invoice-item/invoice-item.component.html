@@ -42,8 +42,10 @@
           <td class="left">{{product.name}}</td>
 
           <td class="right">{{product.price}}</td>
-          <td class="center">1</td>
-          <td class="right">{{product.price}}</td>
+          <td class="center">
+            <input class="form-control" type="number" [ngModel]="product.quantity"
+                   (change)="updateInvoiceProducts(product.id, {quantity: $event.target.valueAsNumber})"></td>
+          <td class="right">{{product.price * product.quantity}}</td>
         </tr>
         </tbody>
       </table>

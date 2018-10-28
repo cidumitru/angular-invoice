@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IInvoice} from '../../../core/shared/interfaces/invoice.interface';
-import {IProduct} from '../../../core/shared/interfaces/product.interface';
+import {IInvoice, InvoiceProducts, ProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
 import {Observable, of} from 'rxjs';
 import {IAppState} from '../../../core/store/app.state.interface';
 import {switchMap} from 'rxjs/operators';
+import {IProductViewModel, ProductViewModel} from './models/product.view-model';
 
 @Component({
   selector: 'app-invoice-item',
@@ -13,7 +13,7 @@ import {switchMap} from 'rxjs/operators';
 })
 export class InvoiceItemComponent implements OnInit {
 
-  products$: Observable<IProduct[]>;
+  products$: Observable<IProductViewModel[]>;
   invoice: IInvoice;
 
   constructor(private store: Store) {
@@ -21,20 +21,31 @@ export class InvoiceItemComponent implements OnInit {
 
   @Input('invoice') set _invoice(invoice: IInvoice) {
     this.invoice = invoice;
-    this.getProductsForInvoiceById(Object.keys(invoice.productsSpecsById).map((key) => parseInt(key, 10)));
+    this.getProductsForInvoiceById(invoice.productsSpecsById);
   }
 
   ngOnInit() {
   }
 
-  getProductsForInvoiceById(productIds: number[]): void {
+  getProductsForInvoiceById(invoiceProducts: InvoiceProducts): void {
+    const productIds = Object.keys(invoiceProducts).map((key) => parseInt(key, 10));
     this.products$ = this.store.select((state: IAppState) => state.products.items).pipe(
-      switchMap((products) => of(productIds.map((id) => products[id]).filter(val => val)))
+      switchMap((products) => {
+        const productsView: IProductViewModel[] = productIds.map((id) => {
+          return new ProductViewModel(
+            {...products[id], ...invoiceProducts[id]});
+        });
+        return of(productsView);
+      })
     );
   }
 
-  getInvoiceTotal(products: IProduct[]): number {
-    return products.reduce((acum, curr) => acum + curr.price, 0);
+  updateInvoiceProducts(productId: number, product: Partial<ProductSpecs>) {
+
+  }
+
+  getInvoiceTotal(products: IProductViewModel[]): number {
+    return products.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0);
   }
 
 }

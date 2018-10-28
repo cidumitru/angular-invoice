@@ -50,9 +50,9 @@ export class InvoicesState {
   @Action(DeleteInvoiceAction)
   deleteInvoice({getState, patchState}: StateContext<InvoicesStateModel>, {id}: DeleteInvoiceAction) {
     const state: InvoicesStateModel = getState();
-    // const items = state.items.filter((invoice) => invoice.id !== id);
-    // patchState({
-    //   items: [...items]
-    // });
+    const items = state.items.filter((invoice) => invoice.id !== id);
+    patchState({
+      items: [...items]
+    });
   }
 }
