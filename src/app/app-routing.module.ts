@@ -6,7 +6,7 @@ import {ClientsComponent} from './modules/clients/clients/clients.component';
 
 const routes: Routes = [
   { path: '', component: InvoicesComponent},
-  {path: 'productsSpecsById', component: ProductsComponent},
+  {path: 'products', component: ProductsComponent},
   {path: 'invoices', component: InvoicesComponent},
   {path: 'clients', component: ClientsComponent}
 ];

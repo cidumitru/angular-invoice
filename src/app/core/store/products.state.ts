@@ -1,4 +1,4 @@
-import {Action, createSelector, State, StateContext} from '@ngxs/store';
+import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {IProductsStateModel, ProductsStateModel} from './models/products.state.model';
 import {LoadProductsAction} from './actions/product.actions';
 
@@ -9,12 +9,9 @@ import {LoadProductsAction} from './actions/product.actions';
 export class ProductsState {
   static default = new ProductsStateModel();
 
-  static getProductsById(productsIds: number[]) {
-    return createSelector([ProductsState], (state: IProductsStateModel) => {
-      const selected = [];
-      productsIds.forEach((id) => selected.push(state.items[id]));
-      return selected;
-    });
+  @Selector()
+  static products(state: IProductsStateModel) {
+    return Object.keys(state.items).map((key) => state.items[key]);
   }
 
   @Action(LoadProductsAction)

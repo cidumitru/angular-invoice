@@ -16,15 +16,15 @@ export class InvoicesService {
 
   loadInvoices(): Observable<IInvoiceDto[]> {
     const state: IAppState = this.store.snapshot();
-    // if (!state.invoices.items.length) {
+    if (!state.invoices.items.length) {
       return this.getInvoices().pipe(
         tap((items) => {
           this.store.dispatch(new LoadInvoicesAction(items));
         })
       );
-    // } else {
-    //   return of([]);
-    // }
+    } else {
+      return of([]);
+    }
   }
 
 

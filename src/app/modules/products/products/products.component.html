@@ -1,3 +1,24 @@
-<p>
-  products works!
-</p>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="center">SKU</th>
+      <th>Item</th>
+
+      <th class="right">Unit Cost</th>
+      <th class="center">Qty</th>
+      <th class="right">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products$ | async">
+      <td class="center">{{product.code}}</td>
+      <td class="left">{{product.name}}</td>
+
+      <td class="right">{{product.price}}</td>
+      <td class="center">1</td>
+      <td class="right">{{product.price}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -8,6 +8,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {NgxsModule} from '@ngxs/store';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ClientsModule} from './modules/clients/clients.module';
+import {InvoicesState} from './core/store/invoices.state';
+import {ProductsState} from './core/store/products.state';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import {ClientsModule} from './modules/clients/clients.module';
     InvoicesModule,
     ClientsModule,
     AppRoutingModule,
-    NgxsModule.forRoot(),
+    NgxsModule.forRoot([InvoicesState, ProductsState]),
     NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
