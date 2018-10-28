@@ -1,6 +1,6 @@
 import {Action, State, StateContext, Store} from '@ngxs/store';
 import {IInvoicesStateModel, InvoicesStateModel} from './models/invoices.state.model';
-import {CreateInvoiceAction, DeleteInvoiceAction, LoadInvoicesAction} from './actions/invoices.actions';
+import {CreateInvoiceAction, DeleteInvoiceAction, LoadInvoicesAction, UpdateInvoiceProductAction} from './actions/invoices.actions';
 import {LoadProductsAction} from './actions/product.actions';
 import {IInvoiceDto} from '../services/interfaces/invoice-dto.interface';
 import {InvoiceStateModel} from '../shared/interfaces/invoice.interface';
@@ -53,6 +53,17 @@ export class InvoicesState {
     const items = state.items.filter((invoice) => invoice.id !== id);
     patchState({
       items: [...items]
+    });
+  }
+
+  @Action(UpdateInvoiceProductAction)
+  updatedInvoiceProduct({getState, patchState}: StateContext<InvoicesStateModel>,
+                        {invoiceId, productId, changes}: UpdateInvoiceProductAction) {
+    const copyOfState: InvoicesStateModel = {...getState()};
+    const editedInvoiceId = copyOfState.items.findIndex((invoice) => invoice.id === invoiceId);
+    copyOfState.items[editedInvoiceId].productsSpecsById[productId] = {...changes};
+    patchState({
+      items: [...copyOfState.items]
     });
   }
 }
