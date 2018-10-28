@@ -1,5 +1,12 @@
 import {IProductDto} from '../../services/interfaces/product-dto.interface';
 
+export class LoadProductsAction {
+  static readonly type = '[Products] Load';
+
+  constructor(public items: IProductDto[]) {
+  }
+}
+
 export class AddProductAction {
   static readonly type = '[Product] Add';
   constructor(product: IProductDto) {}

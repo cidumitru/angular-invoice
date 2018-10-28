@@ -3,4 +3,5 @@ export interface IProductDto {
   name: string;
   code: string;
   price: number;
+  quantity: number;
 }

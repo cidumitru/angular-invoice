@@ -11,3 +11,7 @@ export class InvoicesStateModel {
     this.items = state.items || [];
   }
 }
+
+export interface InvoicesMap {
+  [id: number]: IInvoice;
+}

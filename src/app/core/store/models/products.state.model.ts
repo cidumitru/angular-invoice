@@ -1,12 +1,16 @@
 import {IProduct} from '../../shared/interfaces/product.interface';
 
 export interface IProductsStateModel {
-  items: IProduct[];
+  items: ProductsMap;
 }
 
 export class ProductsStateModel {
-  items: IProduct[];
+  items: ProductsMap;
   constructor(state: Partial<IProductsStateModel> = {}) {
-    this.items = state.items || [];
+    this.items = state.items || {};
   }
+}
+
+export interface ProductsMap {
+  [id: number]: IProduct;
 }

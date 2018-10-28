@@ -11,3 +11,4 @@ export interface IInvoiceInfoDto {
   series: string;
   client: string;
 }
+
