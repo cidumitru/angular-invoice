@@ -27,3 +27,10 @@ export class DeleteInvoiceAction {
   static readonly type = '[Invoice] Delete';
   constructor(public id: number) {}
 }
+
+export class SetActiveInvoiceAction {
+  static readonly type = '[Invoice] Set Active Invoice';
+
+  constructor(public invoiceId: number) {
+  }
+}

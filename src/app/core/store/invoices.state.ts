@@ -1,9 +1,15 @@
 import {Action, createSelector, Selector, State, StateContext, Store} from '@ngxs/store';
 import {IInvoicesState, InvoicesStateModel} from './models/invoices.state.model';
-import {CreateInvoiceAction, DeleteInvoiceAction, LoadInvoicesAction, UpdateInvoiceProductAction} from './actions/invoices.actions';
+import {
+  CreateInvoiceAction,
+  DeleteInvoiceAction,
+  LoadInvoicesAction,
+  SetActiveInvoiceAction,
+  UpdateInvoiceProductAction
+} from './actions/invoices.actions';
 import {LoadProductsAction} from './actions/product.actions';
 import {IInvoiceDto} from '../services/interfaces/invoice-dto.interface';
-import {InvoiceItemStateModel} from '../shared/interfaces/invoice.interface';
+import {IInvoiceItemState, InvoiceItemStateModel} from '../shared/interfaces/invoice.interface';
 import * as _ from 'lodash';
 
 @State<IInvoicesState>({
@@ -19,6 +25,19 @@ export class InvoicesState {
   @Selector()
   static Invoices(state: IInvoicesState) {
     return state.items;
+  }
+
+  @Selector()
+  static getActiveInvoiceId(state: IInvoicesState): number {
+    return state.activeInvoiceId;
+  }
+
+  @Selector([InvoicesState.getActiveInvoiceId])
+  static getActiveInvoice(state: IInvoicesState, activeInvoiceId: number): IInvoiceItemState {
+    if (!activeInvoiceId) {
+      return;
+    }
+    return state.items[activeInvoiceId];
   }
 
   static getInvoiceById(invoiceId: number): (...args: any[]) => InvoiceItemStateModel {
@@ -44,6 +63,8 @@ export class InvoicesState {
       }
     ));
 
+    this.store.dispatch(new SetActiveInvoiceAction(mappedInvoices[0].id));
+
     const invoicesMap = _.keyBy(mappedInvoices, 'id');
 
     patchState({
@@ -58,6 +79,14 @@ export class InvoicesState {
     //   items: [...state.items, {...invoice}]
     // });
   }
+
+  @Action(SetActiveInvoiceAction)
+  setActiveInvoice({patchState}: StateContext<IInvoicesState>, {invoiceId}: SetActiveInvoiceAction) {
+    patchState({
+      activeInvoiceId: invoiceId
+    });
+  }
+
 
   @Action(DeleteInvoiceAction)
   deleteInvoice({getState, patchState}: StateContext<IInvoicesState>, {id}: DeleteInvoiceAction) {
