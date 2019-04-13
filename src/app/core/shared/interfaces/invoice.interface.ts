@@ -1,15 +1,15 @@
-export interface IInvoice {
+export interface IInvoiceItemState {
   id: number;
   info: IInvoiceInfo;
   productsSpecsById: InvoiceProducts;
 }
 
-export class InvoiceStateModel implements IInvoice {
+export class InvoiceItemStateModel implements IInvoiceItemState {
   id: number;
   info: IInvoiceInfo;
   productsSpecsById: InvoiceProducts;
 
-  constructor(invoice: Partial<IInvoice> = {}) {
+  constructor(invoice: Partial<IInvoiceItemState> = {}) {
     Object.assign(this, invoice);
   }
 }

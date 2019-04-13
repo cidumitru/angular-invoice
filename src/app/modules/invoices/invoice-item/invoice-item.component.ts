@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IInvoice, InvoiceProducts, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
+import {IInvoiceItemState, InvoiceProducts, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
 import {Observable, of} from 'rxjs';
 import {IAppState} from '../../../core/store/app.state.interface';
@@ -15,7 +15,7 @@ import {UpdateInvoiceProductAction} from '../../../core/store/actions/invoices.a
 export class InvoiceItemComponent implements OnInit {
 
   products$: Observable<IProductViewModel[]>;
-  invoice: IInvoice;
+  invoice: IInvoiceItemState;
 
   constructor(private store: Store) {
   }
@@ -24,7 +24,7 @@ export class InvoiceItemComponent implements OnInit {
 
   }
 
-  @Input('invoice') set _invoice(invoice: IInvoice) {
+  @Input('invoice') set _invoice(invoice: IInvoiceItemState) {
     this.invoice = invoice;
     this.getProductsForInvoiceById(invoice.productsSpecsById);
   }

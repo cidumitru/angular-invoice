@@ -1,20 +1,20 @@
-import {InvoiceStateModel} from '../../shared/interfaces/invoice.interface';
+import {InvoiceItemStateModel} from '../../shared/interfaces/invoice.interface';
 
-export interface IInvoicesStateModel {
+export interface IInvoicesState {
   items: InvoicesMap;
   invoiceProductsById: Map<number, number[]>;
 }
 
-export class InvoicesStateModel implements IInvoicesStateModel {
+export class InvoicesStateModel implements IInvoicesState {
   items: InvoicesMap;
   invoiceProductsById: Map<number, number[]>;
 
-  constructor(state: Partial<IInvoicesStateModel> = {}) {
+  constructor(state: Partial<IInvoicesState> = {}) {
     this.items = state.items || {};
     this.invoiceProductsById = state.invoiceProductsById || new Map();
   }
 }
 
 export interface InvoicesMap {
-  [id: number]: InvoiceStateModel;
+  [id: number]: InvoiceItemStateModel;
 }

@@ -1,12 +1,12 @@
 import {Action, createSelector, Selector, State, StateContext, Store} from '@ngxs/store';
-import {IInvoicesStateModel, InvoicesStateModel} from './models/invoices.state.model';
+import {IInvoicesState, InvoicesStateModel} from './models/invoices.state.model';
 import {CreateInvoiceAction, DeleteInvoiceAction, LoadInvoicesAction, UpdateInvoiceProductAction} from './actions/invoices.actions';
 import {LoadProductsAction} from './actions/product.actions';
 import {IInvoiceDto} from '../services/interfaces/invoice-dto.interface';
-import {InvoiceStateModel} from '../shared/interfaces/invoice.interface';
+import {InvoiceItemStateModel} from '../shared/interfaces/invoice.interface';
 import * as _ from 'lodash';
 
-@State<IInvoicesStateModel>({
+@State<IInvoicesState>({
   name: 'invoices',
   defaults: InvoicesState.default
 })
@@ -17,23 +17,23 @@ export class InvoicesState {
   }
 
   @Selector()
-  static Invoices(state: InvoicesStateModel) {
+  static Invoices(state: IInvoicesState) {
     return state.items;
   }
 
-  static getInvoiceById(invoiceId: number): (...args: any[]) => InvoiceStateModel {
-    return createSelector([InvoicesState], (state: InvoicesStateModel) => state.items[invoiceId]);
+  static getInvoiceById(invoiceId: number): (...args: any[]) => InvoiceItemStateModel {
+    return createSelector([InvoicesState], (state: IInvoicesState) => state.items[invoiceId]);
   }
 
   @Action(LoadInvoicesAction)
-  loadInvoices({patchState}: StateContext<InvoicesStateModel>, {invoices}: LoadInvoicesAction) {
+  loadInvoices({patchState}: StateContext<IInvoicesState>, {invoices}: LoadInvoicesAction) {
     const products = invoices.reduce((accum, invoice: IInvoiceDto) => {
       return accum.concat(invoice.products);
     }, []);
 
     this.store.dispatch(new LoadProductsAction(products));
 
-    const mappedInvoices = invoices.map((invoice) => new InvoiceStateModel(
+    const mappedInvoices = invoices.map((invoice) => new InvoiceItemStateModel(
       {
         id: invoice.id,
         info: invoice.info,
@@ -52,7 +52,7 @@ export class InvoicesState {
   }
 
   @Action(CreateInvoiceAction)
-  createInvoice({getState, patchState}: StateContext<InvoicesStateModel>, {invoice}: CreateInvoiceAction) {
+  createInvoice({getState, patchState}: StateContext<IInvoicesState>, {invoice}: CreateInvoiceAction) {
     const state: InvoicesStateModel = getState();
     // patchState({
     //   items: [...state.items, {...invoice}]
@@ -60,7 +60,7 @@ export class InvoicesState {
   }
 
   @Action(DeleteInvoiceAction)
-  deleteInvoice({getState, patchState}: StateContext<InvoicesStateModel>, {id}: DeleteInvoiceAction) {
+  deleteInvoice({getState, patchState}: StateContext<IInvoicesState>, {id}: DeleteInvoiceAction) {
     const state: InvoicesStateModel = getState();
     const {[id]: deleted, ...remaining} = state.items;
     patchState({
@@ -69,7 +69,7 @@ export class InvoicesState {
   }
 
   @Action(UpdateInvoiceProductAction)
-  updatedInvoiceProduct({getState, patchState}: StateContext<InvoicesStateModel>,
+  updatedInvoiceProduct({getState, patchState}: StateContext<IInvoicesState>,
                         {invoiceId, productId, changes}: UpdateInvoiceProductAction) {
 
     const copyOfState: InvoicesStateModel = {...getState()};

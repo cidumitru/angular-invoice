@@ -4,7 +4,7 @@ import {Store} from '@ngxs/store';
 import {InvoicesState} from '../../core/store/invoices.state';
 import {Observable} from 'rxjs';
 import {DeleteInvoiceAction} from '../../core/store/actions/invoices.actions';
-import {InvoiceStateModel} from '../../core/shared/interfaces/invoice.interface';
+import {InvoiceItemStateModel} from '../../core/shared/interfaces/invoice.interface';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
 
@@ -15,9 +15,9 @@ import * as _ from 'lodash';
 })
 export class InvoicesComponent implements OnInit {
 
-  selectedInvoice$: Observable<InvoiceStateModel>;
+  selectedInvoice$: Observable<InvoiceItemStateModel>;
   selectedInvoiceId: number;
-  invoices$: Observable<InvoiceStateModel[]>;
+  invoices$: Observable<InvoiceItemStateModel[]>;
 
   constructor(private api: InvoicesService, private store: Store) {
     this.invoices$ = this.store.select(InvoicesState.Invoices).pipe(
