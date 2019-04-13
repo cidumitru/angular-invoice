@@ -21,7 +21,8 @@ export interface IInvoiceInfo {
 }
 
 export interface IProductSpecs {
-  quantity: number;
+  quantity?: number;
+  price?: number;
 }
 
 export interface InvoiceProducts {

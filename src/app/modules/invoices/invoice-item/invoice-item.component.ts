@@ -3,7 +3,7 @@ import {IInvoiceItemState, IProductSpecs} from '../../../core/shared/interfaces/
 import {Store} from '@ngxs/store';
 import {IAppState} from '../../../core/store/app.state.interface';
 import {map} from 'rxjs/operators';
-import {IProductViewModel, ProductViewModel} from './models/product.view-model';
+import {ProductViewModel} from './models/product.view-model';
 import {UpdateInvoiceProductAction} from '../../../core/store/actions/invoices.actions';
 import {InvoiceItemViewModel} from './models/invoice-item.view-model';
 import * as _ from 'lodash';
@@ -39,10 +39,6 @@ export class InvoiceItemComponent implements OnInit {
 
   updateInvoiceProducts(productId: number, product: IProductSpecs) {
     this.store.dispatch(new UpdateInvoiceProductAction(this.invoice.id, productId, product));
-  }
-
-  getInvoiceTotal(products: IProductViewModel[]): number {
-    return products.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0);
   }
 
   private snapshot(): IAppState {
