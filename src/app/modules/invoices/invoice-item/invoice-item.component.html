@@ -2,8 +2,11 @@
   <div class="card-header">
     Invoice
     <strong>{{invoice.info.series}} {{invoice.info.number}}</strong>
-    <span class="float-right"> <strong>Status:</strong> {{invoice.info.status}}</span>
-
+    <div class="d-inline">
+      <span class="float-right"> <strong>Status:</strong> {{invoice.info.status}}</span>
+      <button (click)="invoice.toggleEditMode()"
+              class="btn btn-sm btn-success ml-2">{{invoice.editMode ? 'Save' : 'Edit'}}</button>
+    </div>
   </div>
   <div class="card-body">
     <div class="row mb-4">
@@ -41,7 +44,7 @@
         </tbody>
       </table>
 
-      <ng-container *ngIf="invoice.info.status === invoiceStatuses.draft">
+      <ng-container *ngIf="invoice.info.status === invoiceStatuses.draft || invoice.editMode">
         <h3>Add product to invoice</h3>
         <ngx-select-dropdown
           (change)="addNewProduct($event.value)"
@@ -49,6 +52,7 @@
           [options]="stateProducts$ | async">
         </ngx-select-dropdown>
       </ng-container>
+
     </div>
     <div class="row">
       <div class="col-lg-4 col-sm-5">
@@ -82,14 +86,17 @@
     <td class="left">{{product.name}}</td>
 
     <td class="center">
-      <input (change)="updateInvoiceProducts(product.id, {price: $event.target.valueAsNumber})"
+      <input (change)="updateInvoiceProducts(product.id, {price: $event.target.valueAsNumber})" *ngIf="invoice.editMode"
              [ngModel]="product.price" class="form-control"
              type="number">
+      <ng-container *ngIf="!invoice.editMode">{{product.price}}</ng-container>
     </td>
     <td class="center">
       <input (change)="updateInvoiceProducts(product.id, {quantity: $event.target.valueAsNumber})"
+             *ngIf="invoice.editMode"
              [ngModel]="product.quantity" class="form-control"
              type="number">
+      <ng-container *ngIf="!invoice.editMode">{{product.quantity}}</ng-container>
     </td>
     <td class="right">{{product.price * product.quantity}}</td>
   </tr>

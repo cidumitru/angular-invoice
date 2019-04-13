@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="col-md-9">
-      <app-invoice-item *ngIf="activeInvoice$" [invoice]="activeInvoice$ | async"></app-invoice-item>
+      <app-invoice-item *ngIf="activeInvoice$" [invoice]="(activeInvoice$ | async)"></app-invoice-item>
     </div>
   </div>
 </div>

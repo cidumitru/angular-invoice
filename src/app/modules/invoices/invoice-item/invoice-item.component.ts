@@ -14,6 +14,7 @@ import {IProductsMap} from '../../../core/store/models/products.state.model';
 import {IProduct} from '../../../core/shared/interfaces/product.interface';
 import {InvoicesState} from '../../../core/store/invoices.state';
 import {of} from 'rxjs/internal/observable/of';
+import {tap} from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-invoice-item',
@@ -31,7 +32,9 @@ export class InvoiceItemComponent implements OnInit {
   }
 
   @Input('invoice') set _invoice(invoice: IInvoiceItemState) {
-
+    // if (this.invoice && this.invoice.id === invoice.id) {
+    //   return;
+    // }
     this.invoice = this.createViewModel(invoice);
   }
 
@@ -46,7 +49,13 @@ export class InvoiceItemComponent implements OnInit {
           return of([]);
         }
         return this.store.select(ProductsState.getProductsWithIds(productIds)).pipe(
-          map(stateProducts => stateProducts.map(product => new ProductViewModel({...product, ...invoice.productsSpecsById[product.id]}))));
+          map(stateProducts => stateProducts.map(product => {
+            return new ProductViewModel({...product, ...invoice.productsSpecsById[product.id]});
+          })));
+      }),
+      tap(products => {
+        const something = products;
+
       })
     );
     return new InvoiceItemViewModel({...invoice, products$});
