@@ -20,10 +20,10 @@ export interface IInvoiceInfo {
   client: string;
 }
 
-export interface ProductSpecs {
+export interface IProductSpecs {
   quantity: number;
 }
 
 export interface InvoiceProducts {
-  [id: number]: ProductSpecs;
+  [id: number]: IProductSpecs;
 }

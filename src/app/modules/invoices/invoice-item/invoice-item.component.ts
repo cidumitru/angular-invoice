@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IInvoice, InvoiceProducts, ProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
+import {IInvoice, InvoiceProducts, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
 import {Observable, of} from 'rxjs';
 import {IAppState} from '../../../core/store/app.state.interface';
@@ -18,6 +18,10 @@ export class InvoiceItemComponent implements OnInit {
   invoice: IInvoice;
 
   constructor(private store: Store) {
+  }
+
+  @Input('invoiceId') set _invoiceId(id: number) {
+
   }
 
   @Input('invoice') set _invoice(invoice: IInvoice) {
@@ -41,7 +45,7 @@ export class InvoiceItemComponent implements OnInit {
     );
   }
 
-  updateInvoiceProducts(productId: number, product: ProductSpecs) {
+  updateInvoiceProducts(productId: number, product: IProductSpecs) {
     this.store.dispatch(new UpdateInvoiceProductAction(this.invoice.id, productId, product));
   }
 

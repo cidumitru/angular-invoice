@@ -12,19 +12,17 @@ import {IAppState} from '../store/app.state.interface';
 })
 export class InvoicesService {
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+  }
 
   loadInvoices(): Observable<IInvoiceDto[]> {
     const state: IAppState = this.store.snapshot();
-    if (!state.invoices.items.length) {
-      return this.getInvoices().pipe(
-        tap((items) => {
-          this.store.dispatch(new LoadInvoicesAction(items));
-        })
-      );
-    } else {
-      return of([]);
-    }
+
+    return this.getInvoices().pipe(
+      tap((items) => {
+        this.store.dispatch(new LoadInvoicesAction(items));
+      })
+    );
   }
 
 

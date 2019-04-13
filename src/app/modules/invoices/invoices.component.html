@@ -2,16 +2,16 @@
   <div class="row mt-4">
     <div class="col-md-3">
       <div class="list-group">
-        <li *ngFor="let invoice of (state$ | async).items" (click)="selectedInvoice = invoice"
-            class="list-group-item d-flex justify-content-between align-items-center"
-            [ngClass]="{'active': selectedInvoice && invoice.id === selectedInvoice.id}">
+        <li (click)="selectInvoice(invoice.id)" *ngFor="let invoice of invoices$ | async"
+            [ngClass]="{'active': selectedInvoiceId && invoice.id === selectedInvoiceId}"
+            class="list-group-item d-flex justify-content-between align-items-center">
           Invoice {{ invoice.id }}
           <button class="btn btn-sm btn-danger delete-btn" (click)="deleteInvoice(invoice.id)">Delete</button>
         </li>
       </div>
     </div>
     <div class="col-md-9">
-      <app-invoice-item [invoice]="selectedInvoice || (state$ | async).items[0]"></app-invoice-item>
+      <app-invoice-item *ngIf="selectedInvoice$" [invoice]="selectedInvoice$ | async"></app-invoice-item>
     </div>
   </div>
 </div>

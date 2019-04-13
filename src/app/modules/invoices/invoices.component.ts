@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {InvoicesService} from '../../core/services/invoices.service';
-import {Select, Store} from '@ngxs/store';
-import {InvoicesStateModel} from '../../core/store/models/invoices.state.model';
+import {Store} from '@ngxs/store';
 import {InvoicesState} from '../../core/store/invoices.state';
 import {Observable} from 'rxjs';
 import {DeleteInvoiceAction} from '../../core/store/actions/invoices.actions';
-import {IInvoice} from '../../core/shared/interfaces/invoice.interface';
+import {InvoiceStateModel} from '../../core/shared/interfaces/invoice.interface';
+import {map} from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-invoices',
@@ -14,9 +15,15 @@ import {IInvoice} from '../../core/shared/interfaces/invoice.interface';
 })
 export class InvoicesComponent implements OnInit {
 
-  selectedInvoice: IInvoice;
-  @Select(InvoicesState) state$: Observable<InvoicesStateModel>;
-  constructor(private api: InvoicesService, private store: Store) { }
+  selectedInvoice$: Observable<InvoiceStateModel>;
+  selectedInvoiceId: number;
+  invoices$: Observable<InvoiceStateModel[]>;
+
+  constructor(private api: InvoicesService, private store: Store) {
+    this.invoices$ = this.store.select(InvoicesState.Invoices).pipe(
+      map(invoices => _.values(invoices))
+    );
+  }
 
   ngOnInit() {
     this.api.loadInvoices().subscribe();
@@ -26,6 +33,11 @@ export class InvoicesComponent implements OnInit {
     if (confirm('Delete?')) {
       this.store.dispatch(new DeleteInvoiceAction(invoiceId));
     }
+  }
+
+  selectInvoice(invoiceId: number): void {
+    this.selectedInvoiceId = invoiceId;
+    this.selectedInvoice$ = this.store.select(InvoicesState.getInvoiceById(invoiceId));
   }
 
 }

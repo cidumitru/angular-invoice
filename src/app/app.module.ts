@@ -21,7 +21,7 @@ import {ProductsState} from './core/store/products.state';
     InvoicesModule,
     ClientsModule,
     AppRoutingModule,
-    NgxsModule.forRoot([InvoicesState, ProductsState]),
+    NgxsModule.forRoot([InvoicesState, ProductsState], {developmentMode: true}),
     NgxsLoggerPluginModule.forRoot(),
   ],
   providers: [],
