@@ -2,6 +2,8 @@ import {ProductMockModel} from './models/product.mock.model';
 import {InvoiceMockModel} from './models/invoice.mock.model';
 import {IProductDto} from '../interfaces/product-dto.interface';
 import {IInvoiceDto} from '../interfaces/invoice-dto.interface';
+import {MockProductsLookup} from './mock.products';
+import * as _ from 'lodash';
 
 export function getMockInvoices(n: number): IInvoiceDto[] {
   const invoices: IInvoiceDto[] = [];
@@ -24,14 +26,13 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
 
 function getProducts(): IProductDto[] {
   const products: IProductDto[] = [];
-  const SKU = 'SK';
   for (let i = 0; i < 5; i++) {
-    const productId = Math.floor(Math.random() * 10000 + 1);
+    const product = _.sample(MockProductsLookup);
     products.push(new ProductMockModel(
       {
-        id: productId,
-        name: `Product ${Math.random().toString(36).substr(2, 5)}`,
-        code: `${SKU} ${productId}`,
+        id: product.id,
+        name: product.name,
+        code: `SK-${product.id}`,
         price: Math.floor(Math.random() * 400 + 1) + 100,
         quantity: Math.floor(Math.random() * 5 + 1)
       }

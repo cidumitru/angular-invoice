@@ -1,11 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IInvoiceItemState, InvoiceProducts, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
+import {IInvoiceItemState, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
-import {Observable, of} from 'rxjs';
 import {IAppState} from '../../../core/store/app.state.interface';
-import {switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {IProductViewModel, ProductViewModel} from './models/product.view-model';
 import {UpdateInvoiceProductAction} from '../../../core/store/actions/invoices.actions';
+import {InvoiceItemViewModel} from './models/invoice-item.view-model';
+import * as _ from 'lodash';
+import {ProductsState} from '../../../core/store/products.state';
 
 @Component({
   selector: 'app-invoice-item',
@@ -14,35 +16,25 @@ import {UpdateInvoiceProductAction} from '../../../core/store/actions/invoices.a
 })
 export class InvoiceItemComponent implements OnInit {
 
-  products$: Observable<IProductViewModel[]>;
-  invoice: IInvoiceItemState;
+  invoice: InvoiceItemViewModel;
 
   constructor(private store: Store) {
   }
 
-  @Input('invoiceId') set _invoiceId(id: number) {
-
-  }
-
   @Input('invoice') set _invoice(invoice: IInvoiceItemState) {
-    this.invoice = invoice;
-    this.getProductsForInvoiceById(invoice.productsSpecsById);
+
+    this.invoice = this.createViewModel(invoice);
   }
 
   ngOnInit() {
   }
 
-  getProductsForInvoiceById(invoiceProducts: InvoiceProducts): void {
-    const productIds = Object.keys(invoiceProducts).map((key) => parseInt(key, 10));
-    this.products$ = this.store.select((state: IAppState) => state.products.items).pipe(
-      switchMap((products) => {
-        const productsView: IProductViewModel[] = productIds.map((id) => {
-          return new ProductViewModel(
-            {...products[id], ...invoiceProducts[id]});
-        }).filter((val) => val.id);
-        return of(productsView);
-      })
-    );
+  createViewModel(invoice: IInvoiceItemState): InvoiceItemViewModel {
+    const productIds = _.keys(invoice.productsSpecsById).map(id => parseInt(id, 10));
+    const products$ = this.store.select(ProductsState.getProductsWithIds(productIds)).pipe(
+      map(stateProducts => stateProducts.map(product => new ProductViewModel({...product, ...invoice.productsSpecsById[product.id]}))
+      ));
+    return new InvoiceItemViewModel({...invoice, products$});
   }
 
   updateInvoiceProducts(productId: number, product: IProductSpecs) {
@@ -51,6 +43,10 @@ export class InvoiceItemComponent implements OnInit {
 
   getInvoiceTotal(products: IProductViewModel[]): number {
     return products.reduce((acum, curr) => acum + (curr.price * curr.quantity), 0);
+  }
+
+  private snapshot(): IAppState {
+    return this.store.snapshot();
   }
 
 }
