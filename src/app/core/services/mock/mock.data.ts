@@ -4,6 +4,7 @@ import {IProductDto} from '../interfaces/product-dto.interface';
 import {IInvoiceDto} from '../interfaces/invoice-dto.interface';
 import {MockProductsLookup} from './mock.products';
 import * as _ from 'lodash';
+import {InvoiceStatusEnum} from '../../shared/enums/invoice-status.enum';
 
 export function getMockInvoices(n: number): IInvoiceDto[] {
   const invoices: IInvoiceDto[] = [];
@@ -11,8 +12,9 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
   for (let i = 0; i < n; i++) {
     invoices.push(new InvoiceMockModel(
       {
-        id: Math.floor(Math.random() * 10000 + 1000),
+        id: 100 + i,
         info: {
+          status: InvoiceStatusEnum.sent,
           number: Math.floor(Math.random() * 100000 + 1),
           series: Math.random().toString(36).substr(2, 2).toLocaleUpperCase(),
           client: `Client ${Math.floor(Math.random() * 100 + 1)}`

@@ -1,5 +1,5 @@
 import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store';
-import {IProductsState, ProductsStateModel} from './models/products.state.model';
+import {IProductsMap, IProductsState, ProductsStateModel} from './models/products.state.model';
 import {DeleteProductAction, LoadProductsAction, UpdateProductAction} from './actions/product.actions';
 import {IProduct} from '../shared/interfaces/product.interface';
 
@@ -14,6 +14,12 @@ export class ProductsState {
   static products(state: IProductsState) {
     return Object.keys(state.items).map((key) => state.items[key]);
   }
+
+  @Selector()
+  static getProducts(state: IProductsState): IProductsMap {
+    return state.items;
+  }
+
 
   static getProductsWithIds(productIds: number[]): (...args: any[]) => IProduct[] {
     return createSelector([ProductsState], (state: IProductsState) => {

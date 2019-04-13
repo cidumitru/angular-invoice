@@ -1,6 +1,7 @@
 import {Action, createSelector, Selector, State, StateContext, Store} from '@ngxs/store';
 import {IInvoicesState, InvoicesStateModel} from './models/invoices.state.model';
 import {
+  AddProductToInvoiceAction,
   CreateInvoiceAction,
   DeleteInvoiceAction,
   LoadInvoicesAction,
@@ -9,7 +10,7 @@ import {
 } from './actions/invoices.actions';
 import {LoadProductsAction} from './actions/product.actions';
 import {IInvoiceDto} from '../services/interfaces/invoice-dto.interface';
-import {IInvoiceItemState, InvoiceItemStateModel} from '../shared/interfaces/invoice.interface';
+import {DraftInvoiceStateModel, IInvoiceItemState, InvoiceItemStateModel} from '../shared/interfaces/invoice.interface';
 import * as _ from 'lodash';
 
 @State<IInvoicesState>({
@@ -73,11 +74,15 @@ export class InvoicesState {
   }
 
   @Action(CreateInvoiceAction)
-  createInvoice({getState, patchState}: StateContext<IInvoicesState>, {invoice}: CreateInvoiceAction) {
+  createInvoice({getState, patchState}: StateContext<IInvoicesState>, action: CreateInvoiceAction) {
     const state: InvoicesStateModel = getState();
-    // patchState({
-    //   items: [...state.items, {...invoice}]
-    // });
+    const newInvoiceId = _.max(_.values(state.items).map(invoice => invoice.id)) + 1;
+
+    patchState({
+      items: {...state.items, [newInvoiceId]: new DraftInvoiceStateModel(newInvoiceId)}
+    });
+
+    this.store.dispatch(new SetActiveInvoiceAction(newInvoiceId));
   }
 
   @Action(SetActiveInvoiceAction)
@@ -87,6 +92,22 @@ export class InvoicesState {
     });
   }
 
+  @Action(AddProductToInvoiceAction)
+  addProductToInvoice({getState, patchState}: StateContext<IInvoicesState>, {invoiceId, productId}: AddProductToInvoiceAction) {
+    const state = getState();
+    patchState({
+      items: {
+        ...state.items,
+        [invoiceId]: {
+          ...state.items[invoiceId],
+          productsSpecsById: {
+            ...state.items[invoiceId].productsSpecsById,
+            [productId]: {quantity: 1}
+          }
+        }
+      }
+    });
+  }
 
   @Action(DeleteInvoiceAction)
   deleteInvoice({getState, patchState}: StateContext<IInvoicesState>, {id}: DeleteInvoiceAction) {

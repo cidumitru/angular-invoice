@@ -3,7 +3,9 @@ import {IProductSpecs} from '../../shared/interfaces/invoice.interface';
 
 export class CreateInvoiceAction {
   static readonly type = '[Invoice] Create';
-  constructor(public invoice: IInvoiceDto) {}
+
+  constructor() {
+  }
 }
 
 export class LoadInvoicesAction {
@@ -19,7 +21,7 @@ export class UpdateInvoiceAction {
 export class UpdateInvoiceProductAction {
   static readonly type = '[Invoice] Update Products';
 
-  constructor(public invoiceId: number, public productId: number, public changes: IProductSpecs) {
+  constructor(public invoiceId: number, public productId: number, public changes: Partial<IProductSpecs>) {
   }
 }
 
@@ -32,5 +34,12 @@ export class SetActiveInvoiceAction {
   static readonly type = '[Invoice] Set Active Invoice';
 
   constructor(public invoiceId: number) {
+  }
+}
+
+export class AddProductToInvoiceAction {
+  static readonly type = '[Invoice] Add Product to Invoice';
+
+  constructor(public invoiceId: number, public productId: number) {
   }
 }

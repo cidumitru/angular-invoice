@@ -15,3 +15,7 @@ export class ProductViewModel {
     Object.assign(this, product);
   }
 }
+
+export class InvoiceDraftProductViewModel {
+
+}

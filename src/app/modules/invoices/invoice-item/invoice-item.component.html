@@ -2,7 +2,7 @@
   <div class="card-header">
     Invoice
     <strong>{{invoice.info.series}} {{invoice.info.number}}</strong>
-    <span class="float-right"> <strong>Status:</strong> Pending</span>
+    <span class="float-right"> <strong>Status:</strong> {{invoice.info.status}}</span>
 
   </div>
   <div class="card-body">
@@ -37,23 +37,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let product of invoice.products$ | async">
-          <td class="center">{{product.code}}</td>
-          <td class="left">{{product.name}}</td>
-
-          <td class="center">
-            <input (change)="updateInvoiceProducts(product.id, {price: $event.target.valueAsNumber})"
-                   [ngModel]="product.price" class="form-control"
-                   type="number">
-          </td>
-          <td class="center">
-            <input class="form-control" type="number" [ngModel]="product.quantity"
-                   (change)="updateInvoiceProducts(product.id, {quantity: $event.target.valueAsNumber})">
-          </td>
-          <td class="right">{{product.price * product.quantity}}</td>
-        </tr>
+        <ng-container [ngTemplateOutlet]="displayProducts"></ng-container>
         </tbody>
       </table>
+
+      <ng-container *ngIf="invoice.info.status === invoiceStatuses.draft">
+        <h3>Add product to invoice</h3>
+        <ngx-select-dropdown
+          (change)="addNewProduct($event.value)"
+          [config]="{displayKey: 'name', search: true}"
+          [options]="stateProducts$ | async">
+        </ngx-select-dropdown>
+      </ng-container>
     </div>
     <div class="row">
       <div class="col-lg-4 col-sm-5">
@@ -81,4 +76,21 @@
   </div>
 </div>
 
+<ng-template #displayProducts>
+  <tr *ngFor="let product of invoice.products$ | async">
+    <td class="center">{{product.code}}</td>
+    <td class="left">{{product.name}}</td>
 
+    <td class="center">
+      <input (change)="updateInvoiceProducts(product.id, {price: $event.target.valueAsNumber})"
+             [ngModel]="product.price" class="form-control"
+             type="number">
+    </td>
+    <td class="center">
+      <input (change)="updateInvoiceProducts(product.id, {quantity: $event.target.valueAsNumber})"
+             [ngModel]="product.quantity" class="form-control"
+             type="number">
+    </td>
+    <td class="right">{{product.price * product.quantity}}</td>
+  </tr>
+</ng-template>
