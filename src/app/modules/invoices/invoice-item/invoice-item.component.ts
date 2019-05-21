@@ -1,18 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IInvoiceItemState, IProductSpecs} from '../../../core/shared/interfaces/invoice.interface';
+import {IInvoiceItemState, IProductSpecs} from '@core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
-import {IAppState} from '../../../core/store/app.state.interface';
+import {IAppState} from '@core/store/app.state.interface';
 import {map, switchMap} from 'rxjs/operators';
 import {ProductViewModel} from './models/product.view-model';
-import {AddProductToInvoiceAction, UpdateInvoiceProductAction} from '../../../core/store/actions/invoices.actions';
+import {AddProductToInvoiceAction, UpdateInvoiceProductAction} from '@core/store/actions/invoices.actions';
 import {InvoiceItemViewModel} from './models/invoice-item.view-model';
 import * as _ from 'lodash';
-import {ProductsState} from '../../../core/store/products.state';
-import {InvoiceStatusEnum} from '../../../core/shared/enums/invoice-status.enum';
+import {ProductsState} from '@core/store/products.state';
+import {InvoiceStatusEnum} from '@core/shared/enums/invoice-status.enum';
 import {Observable} from 'rxjs';
-import {IProductsMap} from '../../../core/store/models/products.state.model';
-import {IProduct} from '../../../core/shared/interfaces/product.interface';
-import {InvoicesState} from '../../../core/store/invoices.state';
+import {IProductsMap} from '@core/store/models/products.state.model';
+import {IProduct} from '@core/shared/interfaces/product.interface';
+import {InvoicesState} from '@core/store/invoices.state';
 import {of} from 'rxjs/internal/observable/of';
 import {tap} from 'rxjs/internal/operators/tap';
 
