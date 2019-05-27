@@ -1,0 +1,14 @@
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\bin\Debug\netcoreapp2.2\AngularInvoice.deps.json
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\bin\Debug\netcoreapp2.2\AngularInvoice.runtimeconfig.json
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\bin\Debug\netcoreapp2.2\AngularInvoice.runtimeconfig.dev.json
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\bin\Debug\netcoreapp2.2\AngularInvoice.dll
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\bin\Debug\netcoreapp2.2\AngularInvoice.pdb
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.csprojAssemblyReference.cache
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.csproj.CoreCompileInputs.cache
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.RazorAssemblyInfo.cache
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.RazorAssemblyInfo.cs
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.AssemblyInfoInputs.cache
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.AssemblyInfo.cs
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.RazorTargetAssemblyInfo.cache
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.dll
+C:\Users\dcusnir\Documents\Learn\angular-invoice\backend\AngularInvoice\obj\Debug\netcoreapp2.2\AngularInvoice.pdb
