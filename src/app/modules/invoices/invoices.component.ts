@@ -8,6 +8,7 @@ import {IInvoiceItemState, InvoiceItemStateModel} from '../../core/shared/interf
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
 import {IAppState} from '../../core/store/app.state.interface';
+import {InvoicesMap} from '@core/store/models/invoices.state.model';
 
 @Component({
   selector: 'app-invoices',
@@ -16,17 +17,17 @@ import {IAppState} from '../../core/store/app.state.interface';
 })
 export class InvoicesComponent implements OnInit {
 
-  @Select(InvoicesState.getActiveInvoice) activeInvoice$: Observable<IInvoiceItemState>;
+  @Select(InvoicesState.getActiveInvoice) activeInvoice$!: Observable<IInvoiceItemState>;
 
   invoices$: Observable<InvoiceItemStateModel[]>;
 
   constructor(private api: InvoicesService, private store: Store) {
     this.invoices$ = this.store.select(InvoicesState.Invoices).pipe(
-      map(invoices => _.values(invoices))
+      map((invoices: InvoicesMap) => _.values(invoices))
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!_.values(this.snapshot().invoices.items).length) {
       this.api.loadInvoices().subscribe();
     }

@@ -4,20 +4,35 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
 
-export class InvoiceItemViewModel implements IInvoiceItemState {
+
+interface IInvoiceItemViewModel {
+  id: number;
+  info: IInvoiceInfo;
+  products$: Observable<ProductViewModel[]>;
+  productsSpecsById: InvoiceProducts;
+  editMode?: boolean;
+}
+
+export class InvoiceItemViewModel implements IInvoiceItemState, IInvoiceItemViewModel {
   id: number;
   info: IInvoiceInfo;
   products$: Observable<ProductViewModel[]>;
   productsSpecsById: InvoiceProducts;
   invoiceTotal$: Observable<number>;
-  editMode = true;
+  editMode: boolean = true;
 
-  constructor(invoice: Partial<InvoiceItemViewModel>) {
-    Object.assign(this, invoice);
-    this.invoiceTotal$ = invoice.products$.pipe(map(products => _.sum(products.map(product => product.price * product.quantity))));
+  constructor(invoice: IInvoiceItemViewModel) {
+    this.id = invoice.id;
+    this.info = invoice.info;
+    this.products$ = invoice.products$;
+    this.productsSpecsById = invoice.productsSpecsById;
+    this.editMode = invoice.editMode || false;
+
+    this.invoiceTotal$ = invoice.products$.pipe(map((products: ProductViewModel[]) =>
+      _.sum(products.map((product: ProductViewModel) => product.price * product.quantity))));
   }
 
-  public toggleEditMode() {
+  public toggleEditMode(): void {
     this.editMode = !this.editMode;
   }
 

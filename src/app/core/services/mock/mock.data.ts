@@ -2,13 +2,12 @@ import {ProductMockModel} from './models/product.mock.model';
 import {InvoiceMockModel} from './models/invoice.mock.model';
 import {IProductDto} from '../interfaces/product-dto.interface';
 import {IInvoiceDto} from '../interfaces/invoice-dto.interface';
-import {MockProductsLookup} from './mock.products';
+import {IMockProduct, MockProductsLookup} from './mock.products';
 import * as _ from 'lodash';
 import {InvoiceStatusEnum} from '../../shared/enums/invoice-status.enum';
 
 export function getMockInvoices(n: number): IInvoiceDto[] {
   const invoices: IInvoiceDto[] = [];
-  getProducts();
   for (let i = 0; i < n; i++) {
     invoices.push(new InvoiceMockModel(
       {
@@ -28,8 +27,8 @@ export function getMockInvoices(n: number): IInvoiceDto[] {
 
 function getProducts(): IProductDto[] {
   const products: IProductDto[] = [];
-  for (let i = 0; i < 5; i++) {
-    const product = _.sample(MockProductsLookup);
+  for (let i: number = 0; i < 5; i++) {
+    const product: IMockProduct = _.sample(MockProductsLookup) || <IMockProduct>{};
     products.push(new ProductMockModel(
       {
         id: product.id,

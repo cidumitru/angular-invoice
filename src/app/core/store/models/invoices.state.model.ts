@@ -13,6 +13,7 @@ export class InvoicesStateModel implements IInvoicesState {
 
   constructor(state: Partial<IInvoicesState> = {}) {
     this.items = state.items || {};
+    this.activeInvoiceId = state.activeInvoiceId || 0;
     this.invoiceProductsById = state.invoiceProductsById || new Map();
   }
 }

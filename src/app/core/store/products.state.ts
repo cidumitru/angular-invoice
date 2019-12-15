@@ -2,17 +2,18 @@ import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store
 import {IProductsMap, IProductsState, ProductsStateModel} from './models/products.state.model';
 import {DeleteProductAction, LoadProductsAction, UpdateProductAction} from './actions/product.actions';
 import {IProduct} from '../shared/interfaces/product.interface';
+import {IProductDto} from '@core/services/interfaces/product-dto.interface';
 
 @State<IProductsState>({
   name: 'products',
   defaults: ProductsState.default
 })
 export class ProductsState {
-  static default = new ProductsStateModel();
+  static default: ProductsStateModel = new ProductsStateModel();
 
   @Selector()
-  static products(state: IProductsState) {
-    return Object.keys(state.items).map((key) => state.items[key]);
+  static products(state: IProductsState): unknown[] {
+    return Object.keys(state.items).map((key: string) => state.items[parseInt(key, 10)]);
   }
 
   @Selector()
@@ -23,14 +24,14 @@ export class ProductsState {
 
   static getProductsWithIds(productIds: number[]): (...args: any[]) => IProduct[] {
     return createSelector([ProductsState], (state: IProductsState) => {
-      return productIds.map(productId => state.items[productId]);
+      return productIds.map((productId: number) => state.items[productId]);
     });
   }
 
   @Action(LoadProductsAction)
-  loadProducts({getState, patchState}: StateContext<IProductsState>, {items}: LoadProductsAction) {
+  loadProducts({getState, patchState}: StateContext<IProductsState>, {items}: LoadProductsAction): void {
     patchState({
-      items: items.reduce((obj, product) => {
+      items: items.reduce((obj: IProductsMap, product: IProductDto) => {
         obj[product.id] = product;
         return obj;
       }, {})
@@ -38,7 +39,7 @@ export class ProductsState {
   }
 
   @Action(DeleteProductAction)
-  deleteProduct({getState, patchState}: StateContext<IProductsState>, {id}: DeleteProductAction) {
+  deleteProduct({getState, patchState}: StateContext<IProductsState>, {id}: DeleteProductAction): void {
     const state: IProductsState = getState();
     delete state.items[id];
     patchState({
@@ -47,7 +48,7 @@ export class ProductsState {
   }
 
   @Action(UpdateProductAction)
-  updateProduct({getState, patchState}: StateContext<IProductsState>, {id, changes}: UpdateProductAction) {
+  updateProduct({getState, patchState}: StateContext<IProductsState>, {id, changes}: UpdateProductAction): void {
     const state: IProductsState = getState();
     patchState({
       items: {...state.items, [id]: {...state.items[id], ...changes}}

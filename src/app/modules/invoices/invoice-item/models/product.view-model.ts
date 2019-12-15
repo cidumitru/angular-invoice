@@ -12,10 +12,10 @@ export class ProductViewModel {
   quantity: number;
 
   constructor(product: IProductViewModel) {
-    Object.assign(this, product);
+    this.id = product.id;
+    this.name = product.name;
+    this.code = product.code;
+    this.price = product.price;
+    this.quantity = product.quantity;
   }
-}
-
-export class InvoiceDraftProductViewModel {
-
 }

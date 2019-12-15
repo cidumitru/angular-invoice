@@ -12,7 +12,8 @@ import {IProduct} from '../../../core/shared/interfaces/product.interface';
 })
 export class ProductsComponent implements OnInit {
 
-  @Select(ProductsState.products) products$: Observable<any>;
+  @Select(ProductsState.products)
+  products$!: Observable<any>;
 
   constructor(private store: Store) {
   }

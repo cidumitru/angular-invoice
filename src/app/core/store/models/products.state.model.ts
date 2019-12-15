@@ -12,6 +12,8 @@ export class ProductsStateModel implements IProductsState {
 
   constructor(state: Partial<IProductsState> = {}) {
     this.items = state.items || {};
+    this.productsSpecsByInvoiceId = state.productsSpecsByInvoiceId
+      || <Map<number, IProductSpecs[]>>{};
   }
 }
 

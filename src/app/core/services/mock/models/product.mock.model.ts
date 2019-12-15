@@ -7,7 +7,11 @@ export class ProductMockModel implements IProductDto {
   price: number;
   quantity: number;
 
-  constructor(product: Partial<IProductDto> = {}) {
-    Object.assign(this, product);
+  constructor(product: IProductDto) {
+    this.id = product.id;
+    this.name = product.name;
+    this.code = product.code;
+    this.price = product.price;
+    this.quantity = product.quantity;
   }
 }

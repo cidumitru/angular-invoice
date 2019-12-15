@@ -7,7 +7,9 @@ export class InvoiceMockModel implements IInvoiceDto {
   info: IInvoiceInfo;
   products: IProductDto[];
 
-  constructor(invoice: Partial<IInvoiceDto> = {}) {
-    Object.assign(this, invoice);
+  constructor(invoice: IInvoiceDto) {
+    this.id = invoice.id;
+    this.info = invoice.info;
+    this.products = invoice.products;
   }
 }

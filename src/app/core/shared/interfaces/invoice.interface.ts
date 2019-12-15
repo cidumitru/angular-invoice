@@ -11,8 +11,10 @@ export class InvoiceItemStateModel implements IInvoiceItemState {
   info: IInvoiceInfo;
   productsSpecsById: InvoiceProducts;
 
-  constructor(invoice: Partial<IInvoiceItemState> = {}) {
-    Object.assign(this, invoice);
+  constructor(invoice: IInvoiceItemState) {
+    this.id = invoice.id;
+    this.info = invoice.info;
+    this.productsSpecsById = invoice.productsSpecsById;
   }
 }
 
@@ -38,7 +40,7 @@ export class DraftInvoiceStateModel implements IInvoiceItemState {
 
   constructor(public id: number) {
     // TODO: Add series from state
-    this.info = {client: undefined, number: id, series: 'SK', status: InvoiceStatusEnum.draft};
+    this.info = {client: 'n/a', number: id, series: 'SK', status: InvoiceStatusEnum.draft};
     this.productsSpecsById = {};
   }
 }
