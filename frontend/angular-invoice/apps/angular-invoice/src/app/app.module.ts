@@ -26,6 +26,10 @@ import {InvoicesModule} from '@angular-invoice/feature/invoices/lib/invoices.mod
       {
         path: 'products',
         component: ProductsComponent
+      },
+      {
+        path: 'clients',
+        loadChildren: () => import('@angular-invoice/feature/clients/index').then(m => m.ClientsModule),
       }
     ]),
     NgxsLoggerPluginModule.forRoot(),
