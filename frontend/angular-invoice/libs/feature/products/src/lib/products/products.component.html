@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="center">N</th>
+      <th class="center">SKU</th>
+      <th>Item</th>
+
+      <th class="right">Unit Cost</th>
+      <th class="right">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products$ | async; let i = index">
+      <td class="center">{{i}}</td>
+      <td class="center">{{product.code}}</td>
+      <td class="left">{{product.name}}</td>
+
+      <td class="right">
+        <input (change)="updateProduct(product.id, {price: $event.target.valueAsNumber})" [ngModel]="product.price"
+               class="form-control"
+               type="number">
+      </td>
+      <td class="right">
+        <button (click)="removeProduct(product.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

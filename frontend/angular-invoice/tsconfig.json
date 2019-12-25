@@ -21,14 +21,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-invoice/feature/products": [
-        "libs/feature/products/src/index.ts"
+      "@angular-invoice/feature/products/*": [
+        "libs/feature/products/src/*"
       ],
-      "@angular-invoice/feature/invoices": [
-        "libs/feature/invoices/src/index.ts"
+      "@angular-invoice/feature/invoices/*": [
+        "libs/feature/invoices/src/*"
       ],
-      "@angular-invoice/feature/clients": [
-        "libs/feature/clients/src/index.ts"
+      "@angular-invoice/feature/clients/*": [
+        "libs/feature/clients/src/*"
       ]
     }
   },

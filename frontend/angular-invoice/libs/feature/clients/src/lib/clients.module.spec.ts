@@ -1,14 +1,13 @@
-import {async, TestBed} from '@angular/core/testing';
 import {ClientsModule} from './clients.module';
 
 describe('ClientsModule', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ClientsModule]
-    }).compileComponents();
-  }));
+  let clientsModule: ClientsModule;
 
-  it('should create', () => {
-    expect(ClientsModule).toBeDefined();
+  beforeEach(() => {
+    clientsModule = new ClientsModule();
+  });
+
+  it('should create an instance', () => {
+    expect(clientsModule).toBeTruthy();
   });
 });

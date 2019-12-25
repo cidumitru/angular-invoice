@@ -1,14 +1,13 @@
-import {async, TestBed} from '@angular/core/testing';
 import {InvoicesModule} from './invoices.module';
 
 describe('InvoicesModule', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [InvoicesModule]
-    }).compileComponents();
-  }));
+  let invoicesModule: InvoicesModule;
 
-  it('should create', () => {
-    expect(InvoicesModule).toBeDefined();
+  beforeEach(() => {
+    invoicesModule = new InvoicesModule();
+  });
+
+  it('should create an instance', () => {
+    expect(invoicesModule).toBeTruthy();
   });
 });
