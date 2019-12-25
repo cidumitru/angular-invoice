@@ -1,19 +1,21 @@
 import {Component, Input} from '@angular/core';
-import {IInvoiceItemState, InvoiceItemStateModel, IProductSpecs} from '@core/shared/interfaces/invoice.interface';
 import {Store} from '@ngxs/store';
-import {IAppState} from '@core/store/app.state.interface';
 import {map, switchMap} from 'rxjs/operators';
 import {ProductViewModel} from './models/product.view-model';
-import {AddProductToInvoiceAction, UpdateInvoiceProductAction} from '@core/store/actions/invoices.actions';
 import {InvoiceItemViewModel} from './models/invoice-item.view-model';
 import * as _ from 'lodash';
-import {ProductsState} from '@core/store/products.state';
-import {InvoiceStatusEnum} from '@core/shared/enums/invoice-status.enum';
 import {Observable} from 'rxjs';
-import {IProductsMap} from '@core/store/models/products.state.model';
-import {IProduct} from '@core/shared/interfaces/product.interface';
-import {InvoicesState} from '@core/store/invoices.state';
 import {of} from 'rxjs/internal/observable/of';
+import {InvoiceStatusEnum} from '@angular-invoice/shared/lib/enums/invoice-status.enum';
+import {IInvoiceItemState, InvoiceItemStateModel, IProductSpecs} from '@angular-invoice/shared/lib/interfaces/invoice.interface';
+import {ProductsState} from '@angular-invoice/feature/products/lib/core/store/products.state';
+import {IProductsMap} from '@angular-invoice/feature/products/lib/core/store/models/products.state.model';
+import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
+import {
+  AddProductToInvoiceAction,
+  UpdateInvoiceProductAction
+} from '@angular-invoice/feature/invoices/lib/core/store/actions/invoices.actions';
+import {InvoicesState} from '@angular-invoice/feature/invoices/lib/core/store/invoices.state';
 
 @Component({
   selector: 'app-invoice-item',
@@ -32,9 +34,9 @@ export class InvoiceItemComponent {
   }
 
   @Input('invoice') set _invoice(invoice: IInvoiceItemState) {
-    // if (this.invoice && this.invoice.id === invoice.id) {
-    //   return;
-    // }
+    if (this.invoice && this.invoice.id === invoice.id || !invoice) {
+      return;
+    }
     this.invoice = this.createViewModel(invoice);
   }
 
@@ -62,7 +64,7 @@ export class InvoiceItemComponent {
     this.store.dispatch(new UpdateInvoiceProductAction(this.invoice.id, productId, product));
   }
 
-  private snapshot(): IAppState {
+  private snapshot(): any {
     return this.store.snapshot();
   }
 

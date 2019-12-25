@@ -1,14 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SharedModule} from '../../core/shared/shared-module/shared.module';
 import {ProductsComponent} from './products/products.component';
 import {FormsModule} from '@angular/forms';
+import {NgxsModule} from '@ngxs/store';
+import {ProductsState} from '@angular-invoice/feature/products/lib/core/store/products.state';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    NgxsModule.forFeature([ProductsState])
   ],
   declarations: [ProductsComponent]
 })

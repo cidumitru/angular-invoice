@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductsState} from '../../../core/store/products.state';
 import {Observable} from 'rxjs';
 import {Select, Store} from '@ngxs/store';
-import {DeleteProductAction, UpdateProductAction} from '../../../core/store/actions/product.actions';
-import {IProduct} from '../../../core/shared/interfaces/product.interface';
+import {DeleteProductAction, UpdateProductAction} from '@angular-invoice/feature/products/lib/core/store/actions/product.actions';
+import {ProductsState} from '@angular-invoice/feature/products/lib/core/store/products.state';
+import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
 
 @Component({
   selector: 'app-products',

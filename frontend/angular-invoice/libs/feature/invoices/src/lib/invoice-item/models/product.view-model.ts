@@ -1,4 +1,5 @@
-import {IProduct} from '../../../../core/shared/interfaces/product.interface';
+import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
+
 
 export interface IProductViewModel extends IProduct {
   quantity: number;

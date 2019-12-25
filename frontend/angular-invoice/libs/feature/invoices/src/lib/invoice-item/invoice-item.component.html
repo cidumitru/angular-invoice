@@ -44,7 +44,7 @@
         </tbody>
       </table>
 
-      <ng-container *ngIf="invoice.info.status === invoiceStatuses.draft || invoice.editMode">
+      <ng-container *ngIf="invoice?.info?.status === invoiceStatuses.draft || invoice?.editMode">
         <h3>Add product to invoice</h3>
         <ngx-select-dropdown
           (change)="addNewProduct($event.value)"

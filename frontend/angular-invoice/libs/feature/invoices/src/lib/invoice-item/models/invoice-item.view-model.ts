@@ -1,8 +1,8 @@
-import {IInvoiceInfo, IInvoiceItemState, InvoiceProducts} from '../../../../core/shared/interfaces/invoice.interface';
 import {ProductViewModel} from './product.view-model';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
+import {IInvoiceInfo, IInvoiceItemState, InvoiceProducts} from '@angular-invoice/shared/lib/interfaces/invoice.interface';
 
 
 interface IInvoiceItemViewModel {

@@ -29,6 +29,9 @@
       ],
       "@angular-invoice/feature/clients/*": [
         "libs/feature/clients/src/*"
+      ],
+      "@angular-invoice/shared/*": [
+        "libs/shared/src/*"
       ]
     }
   },

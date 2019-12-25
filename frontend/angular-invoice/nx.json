@@ -22,6 +22,9 @@
     },
     "feature-clients": {
       "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }

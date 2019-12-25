@@ -1,14 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {InvoicesService} from '../../core/services/invoices.service';
 import {Select, Store} from '@ngxs/store';
-import {InvoicesState} from '../../core/store/invoices.state';
 import {Observable} from 'rxjs';
-import {CreateInvoiceAction, DeleteInvoiceAction, SetActiveInvoiceAction} from '../../core/store/actions/invoices.actions';
-import {IInvoiceItemState, InvoiceItemStateModel} from '../../core/shared/interfaces/invoice.interface';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
-import {IAppState} from '../../core/store/app.state.interface';
-import {InvoicesMap} from '@core/store/models/invoices.state.model';
+import {IInvoiceItemState, InvoiceItemStateModel} from '@angular-invoice/shared/lib/interfaces/invoice.interface';
+import {InvoicesMap} from '@angular-invoice/feature/invoices/lib/core/store/models/invoices.state.model';
+import {
+  CreateInvoiceAction,
+  DeleteInvoiceAction,
+  SetActiveInvoiceAction
+} from '@angular-invoice/feature/invoices/lib/core/store/actions/invoices.actions';
+import {InvoicesService} from '@angular-invoice/feature/invoices/lib/core/services/invoices.service';
+import {InvoicesState} from '@angular-invoice/feature/invoices/lib/core/store/invoices.state';
 
 @Component({
   selector: 'app-invoices',
@@ -47,7 +50,7 @@ export class InvoicesComponent implements OnInit {
     this.store.dispatch(new CreateInvoiceAction());
   }
 
-  private snapshot(): IAppState {
+  private snapshot(): any {
     return this.store.snapshot();
   }
 
