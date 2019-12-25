@@ -133,6 +133,108 @@
           }
         }
       }
+    },
+    "feature-products": {
+      "projectType": "library",
+      "root": "libs/feature/products",
+      "sourceRoot": "libs/feature/products/src",
+      "prefix": "angular-invoice",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature/products/tsconfig.lib.json",
+              "libs/feature/products/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/feature/products/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature/products/jest.config.js",
+            "tsConfig": "libs/feature/products/tsconfig.spec.json",
+            "setupFile": "libs/feature/products/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "feature-invoices": {
+      "projectType": "library",
+      "root": "libs/feature/invoices",
+      "sourceRoot": "libs/feature/invoices/src",
+      "prefix": "angular-invoice",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature/invoices/tsconfig.lib.json",
+              "libs/feature/invoices/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/feature/invoices/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature/invoices/jest.config.js",
+            "tsConfig": "libs/feature/invoices/tsconfig.spec.json",
+            "setupFile": "libs/feature/invoices/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "feature-clients": {
+      "projectType": "library",
+      "root": "libs/feature/clients",
+      "sourceRoot": "libs/feature/clients/src",
+      "prefix": "angular-invoice",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/feature/clients/tsconfig.lib.json",
+              "libs/feature/clients/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/feature/clients/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature/clients/jest.config.js",
+            "tsConfig": "libs/feature/clients/tsconfig.spec.json",
+            "setupFile": "libs/feature/clients/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

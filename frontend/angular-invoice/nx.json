@@ -13,6 +13,15 @@
     },
     "angular-invoice": {
       "tags": []
+    },
+    "feature-products": {
+      "tags": []
+    },
+    "feature-invoices": {
+      "tags": []
+    },
+    "feature-clients": {
+      "tags": []
     }
   }
 }
