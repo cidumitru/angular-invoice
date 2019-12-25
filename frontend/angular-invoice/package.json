@@ -57,7 +57,7 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "eslint": "6.1.0",
-    "typescript": "~3.5.3",
+    "typescript": "^3.7.4",
     "prettier": "1.18.2",
     "@angular/compiler-cli": "^8.2.0",
     "@angular/language-service": "^8.2.0",
