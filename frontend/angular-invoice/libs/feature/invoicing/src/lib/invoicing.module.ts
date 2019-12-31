@@ -10,8 +10,6 @@ import {SharedModule} from '@angular-invoice/shared/lib/shared.module';
 import {InvoicingRoutingModule} from './invoicing-routing.module';
 import {InvoicesListState} from '@angular-invoice/feature/invoicing/lib/store/invoices-list/invoices-list.state';
 import {INVOICING_API_SERVICE} from '@angular-invoice/feature/invoicing/lib/services/api/invoicing.api.service.interface';
-import {environment} from '../../../../../apps/angular-invoice/src/environments/environment';
-import {InvoicingApiService} from '@angular-invoice/feature/invoicing/lib/services/api/invoicing.api.service';
 import {InvoicingMockApiService} from '@angular-invoice/feature/invoicing/lib/services/api/invoicing.api.service.mock';
 import {MaterialModule} from '@angular-invoice/shared/lib/material.module';
 
@@ -28,7 +26,8 @@ import {MaterialModule} from '@angular-invoice/shared/lib/material.module';
   providers: [
     {
       provide: INVOICING_API_SERVICE,
-      useClass: environment.production ? InvoicingApiService : InvoicingMockApiService
+      // useClass: environment.production ? InvoicingApiService : InvoicingMockApiService
+      useClass: InvoicingMockApiService
     }
   ]
 })
