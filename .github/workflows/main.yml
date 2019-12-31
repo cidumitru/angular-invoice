@@ -26,6 +26,8 @@ jobs:
         CI: true
 
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.1.1
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         FOLDER: frontend/angular-invoice/dist/apps/angular-invoice
+        BRANCH: gh-pages
+        ACCESS_TOKEN: ${{ secrets.DEPLOYMENT_KEY }}
