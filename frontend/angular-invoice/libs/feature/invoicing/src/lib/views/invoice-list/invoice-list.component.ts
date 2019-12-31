@@ -38,4 +38,5 @@ export class InvoicesListResolver implements Resolve<Observable<unknown>> {
 })
 export class InvoiceListComponent {
   @Select(InvoicesListState.invoicesList) public invoices$!: Observable<InvoiceListItemState[]>;
+  displayedColumns: string[] = ['title', 'clientName', 'invoiceDate', 'dueToDate', 'amount', 'status'];
 }

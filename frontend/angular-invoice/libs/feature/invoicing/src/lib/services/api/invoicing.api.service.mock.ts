@@ -8,21 +8,23 @@ import {
 import * as _ from 'lodash';
 import {IInvoiceListItemDto} from '@angular-invoice/feature/invoicing/lib/services/api/dtos/invoice-list-item.dto';
 import {InvoiceStatues} from '@angular-invoice/feature/invoicing/lib/store/invoices-list/invoices-list.state.model';
+import * as faker from 'faker';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvoicingMockApiService implements IInvoicingApiService {
   getInvoices(request: IInvoicesListRequest): Observable<IInvoicesListResponse> {
-    const mockInvoices: IInvoiceListItemDto[] = _.range(10).map(i => ({
+    const mockInvoices: IInvoiceListItemDto[] = _.range(20).map(i => ({
       id: i,
-      title: 'Invoice' + i,
-      clientName: 'client',
-      invoiceDate: new Date(),
-      dueToDate: new Date(),
+      title: 'Invoice ' + i,
+      clientName: faker.company.companyName(),
+      invoiceDate: faker.date.past(),
+      dueToDate: faker.date.future(),
       amount: Math.random() * 10000,
       currency: 'USD',
-      status: InvoiceStatues.Canceled
+      status: <InvoiceStatues>_.sample(InvoiceStatues)
     }));
 
     return of({

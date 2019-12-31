@@ -13,12 +13,14 @@ import {INVOICING_API_SERVICE} from '@angular-invoice/feature/invoicing/lib/serv
 import {environment} from '../../../../../apps/angular-invoice/src/environments/environment';
 import {InvoicingApiService} from '@angular-invoice/feature/invoicing/lib/services/api/invoicing.api.service';
 import {InvoicingMockApiService} from '@angular-invoice/feature/invoicing/lib/services/api/invoicing.api.service.mock';
+import {MaterialModule} from '@angular-invoice/shared/lib/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
+    MaterialModule,
     NgxsModule.forFeature([InvoicingState, InvoicesListState]),
     InvoicingRoutingModule
   ],

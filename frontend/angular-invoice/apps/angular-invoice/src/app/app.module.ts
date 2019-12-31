@@ -10,6 +10,7 @@ import {ProductsComponent} from '@angular-invoice/feature/products/lib/products/
 import {ProductsModule} from '@angular-invoice/feature/products/lib/products.module';
 import {InvoicingMainComponent} from '@angular-invoice/feature/invoicing/lib/views/invoices-main/invoicing-main.component';
 import {InvoicingModule} from '@angular-invoice/feature/invoicing/lib/invoicing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,7 @@ import {InvoicingModule} from '@angular-invoice/feature/invoicing/lib/invoicing.
       developmentMode: !environment.production,
       selectorOptions: {injectContainerState: false, suppressErrors: false}
     }),
+    BrowserAnimationsModule,
 
   ],
   providers: [],
