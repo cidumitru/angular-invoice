@@ -21,7 +21,7 @@ jobs:
       run: |
         cd frontend/angular-invoice
         npm install
-        npm run build
+        npm run build:ng-invoice
       env:
         CI: true
 
