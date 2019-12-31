@@ -8,19 +8,19 @@ import {environment} from '../environments/environment';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ProductsComponent} from '@angular-invoice/feature/products/lib/products/products.component';
 import {ProductsModule} from '@angular-invoice/feature/products/lib/products.module';
-import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/views/invoices-main/invoices.component';
-import {InvoicesModule} from '@angular-invoice/feature/invoices/lib/invoices.module';
+import {InvoicingMainComponent} from '@angular-invoice/feature/invoicing/lib/views/invoices-main/invoicing-main.component';
+import {InvoicingModule} from '@angular-invoice/feature/invoicing/lib/invoicing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     ProductsModule,
-    InvoicesModule,
+    InvoicingModule,
     RouterModule.forRoot([
       {
         path: 'invoices',
-        component: InvoicesComponent
+        component: InvoicingMainComponent
         // loadChildren: () => import("@angular-invoice/feature/invoices/index").then(m => m.InvoicesModule),
       },
       {

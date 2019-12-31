@@ -25,8 +25,8 @@
       "@angular-invoice/feature/products/*": [
         "libs/feature/products/src/*"
       ],
-      "@angular-invoice/feature/invoices/*": [
-        "libs/feature/invoices/src/*"
+      "@angular-invoice/feature/invoicing/*": [
+        "libs/feature/invoicing/src/*"
       ],
       "@angular-invoice/feature/clients/*": [
         "libs/feature/clients/src/*"

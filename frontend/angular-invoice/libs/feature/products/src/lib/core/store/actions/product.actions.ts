@@ -1,5 +1,7 @@
-import {IProductDto} from '@angular-invoice/feature/invoices/lib/services/interfaces/product-dto.interface';
 import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
+
+export interface IProductDto {
+}
 
 export class LoadProductsAction {
   static readonly type = '[Products] Load';
