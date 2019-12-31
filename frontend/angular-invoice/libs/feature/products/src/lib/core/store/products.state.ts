@@ -2,7 +2,7 @@ import {Action, createSelector, Selector, State, StateContext} from '@ngxs/store
 import {IProductsMap, IProductsState, ProductsStateModel} from './models/products.state.model';
 import {DeleteProductAction, LoadProductsAction, UpdateProductAction} from './actions/product.actions';
 import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
-import {IProductDto} from '@angular-invoice/feature/invoices/lib/core/services/interfaces/product-dto.interface';
+import {IProductDto} from '@angular-invoice/feature/invoices/lib/services/interfaces/product-dto.interface';
 
 @State<IProductsState>({
   name: 'products',

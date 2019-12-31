@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {InvoiceListComponent} from '@angular-invoice/feature/invoices/lib/invoice-list/invoice-list.component';
-import {InvoiceItemComponent} from '@angular-invoice/feature/invoices/lib/invoice-item/invoice-item.component';
-import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/invoices.component';
+import {InvoiceListComponent} from '@angular-invoice/feature/invoices/lib/views/invoice-list/invoice-list.component';
+import {InvoiceItemComponent} from '@angular-invoice/feature/invoices/lib/views/invoice-item/invoice-item.component';
+import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/views/invoices-main/invoices.component';
 import {KnownInvoicesModuleRoutePaths} from '@angular-invoice/feature/invoices/lib/known-invoices-module-route.paths';
 
 const routes: Routes = [

@@ -11,11 +11,8 @@ import {IInvoiceItemState, InvoiceItemStateModel, IProductSpecs} from '@angular-
 import {ProductsState} from '@angular-invoice/feature/products/lib/core/store/products.state';
 import {IProductsMap} from '@angular-invoice/feature/products/lib/core/store/models/products.state.model';
 import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
-import {
-  AddProductToInvoiceAction,
-  UpdateInvoiceProductAction
-} from '@angular-invoice/feature/invoices/lib/core/store/actions/invoices.actions';
-import {InvoicesState} from '@angular-invoice/feature/invoices/lib/core/store/invoices.state';
+import {AddProductToInvoiceAction, UpdateInvoiceProductAction} from '@angular-invoice/feature/invoices/lib/store/actions/invoices.actions';
+import {InvoicesState} from '@angular-invoice/feature/invoices/lib/store/invoices.state';
 
 @Component({
   selector: 'app-invoice-item',

@@ -1,4 +1,4 @@
-import {IProductDto} from '@angular-invoice/feature/invoices/lib/core/services/interfaces/product-dto.interface';
+import {IProductDto} from '@angular-invoice/feature/invoices/lib/services/interfaces/product-dto.interface';
 import {IProduct} from '@angular-invoice/shared/lib/interfaces/product.interface';
 
 export class LoadProductsAction {

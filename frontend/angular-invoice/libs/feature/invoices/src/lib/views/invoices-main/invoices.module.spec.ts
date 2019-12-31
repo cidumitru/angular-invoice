@@ -1,4 +1,4 @@
-import {InvoicesModule} from './invoices.module';
+import {InvoicesModule} from '../../invoices.module';
 
 describe('InvoicesModule', () => {
   let invoicesModule: InvoicesModule;

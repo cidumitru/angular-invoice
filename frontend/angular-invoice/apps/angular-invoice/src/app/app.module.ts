@@ -8,7 +8,7 @@ import {environment} from '../environments/environment';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ProductsComponent} from '@angular-invoice/feature/products/lib/products/products.component';
 import {ProductsModule} from '@angular-invoice/feature/products/lib/products.module';
-import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/invoices.component';
+import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/views/invoices-main/invoices.component';
 import {InvoicesModule} from '@angular-invoice/feature/invoices/lib/invoices.module';
 
 @NgModule({

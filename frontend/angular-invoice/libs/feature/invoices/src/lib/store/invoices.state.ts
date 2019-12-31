@@ -17,7 +17,7 @@ import {
   InvoiceProducts
 } from '@angular-invoice/shared/lib/interfaces/invoice.interface';
 import {LoadProductsAction} from '@angular-invoice/feature/products/lib/core/store/actions/product.actions';
-import {IProductDto} from '@angular-invoice/feature/invoices/lib/core/services/interfaces/product-dto.interface';
+import {IProductDto} from '@angular-invoice/feature/invoices/lib/services/interfaces/product-dto.interface';
 import {Injectable} from '@angular/core';
 
 @Injectable()
