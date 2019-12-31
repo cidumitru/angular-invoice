@@ -3,12 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {InvoiceListComponent} from '@angular-invoice/feature/invoices/lib/invoice-list/invoice-list.component';
 import {InvoiceItemComponent} from '@angular-invoice/feature/invoices/lib/invoice-item/invoice-item.component';
 import {InvoicesComponent} from '@angular-invoice/feature/invoices/lib/invoices.component';
-
-export enum KnownInvoicesModuleRoutePaths {
-  InvoiceList = 'invoices',
-  InvoiceView = 'invoice',
-  InvoiceViewWithParams = 'invoice/:invoiceId'
-}
+import {KnownInvoicesModuleRoutePaths} from '@angular-invoice/feature/invoices/lib/known-invoices-module-route.paths';
 
 const routes: Routes = [
   {

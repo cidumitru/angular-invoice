@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Store} from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
 import {map, switchMap} from 'rxjs/operators';
 import {ProductViewModel} from './models/product.view-model';
 import {InvoiceItemViewModel} from './models/invoice-item.view-model';
@@ -25,6 +25,7 @@ import {InvoicesState} from '@angular-invoice/feature/invoices/lib/core/store/in
 export class InvoiceItemComponent {
 
   invoice!: InvoiceItemViewModel;
+  @Select(InvoicesState.getActiveInvoice) activeInvoice$!: Observable<IInvoiceItemState>;
   invoiceStatuses: typeof InvoiceStatusEnum = InvoiceStatusEnum;
   stateProducts$: Observable<IProductsMap>;
 

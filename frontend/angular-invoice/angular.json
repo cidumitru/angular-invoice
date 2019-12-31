@@ -141,7 +141,7 @@
       "projectType": "library",
       "root": "libs/feature/products",
       "sourceRoot": "libs/feature/products/src",
-      "prefix": "angular-invoice",
+      "prefix": "app",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -175,7 +175,7 @@
       "projectType": "library",
       "root": "libs/feature/invoices",
       "sourceRoot": "libs/feature/invoices/src",
-      "prefix": "angular-invoice",
+      "prefix": "app",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -209,7 +209,7 @@
       "projectType": "library",
       "root": "libs/feature/clients",
       "sourceRoot": "libs/feature/clients/src",
-      "prefix": "angular-invoice",
+      "prefix": "app",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
@@ -243,7 +243,7 @@
       "projectType": "library",
       "root": "libs/shared",
       "sourceRoot": "libs/shared/src",
-      "prefix": "angular-invoice",
+      "prefix": "app",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
