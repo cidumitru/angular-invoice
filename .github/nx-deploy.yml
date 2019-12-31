@@ -21,6 +21,7 @@ jobs:
       run: |
         cd frontend/angular-invoice
         npm install
+        npm install -g angular-cli-ghpages
         npm run build:ng-invoice-github
       env:
         CI: true
